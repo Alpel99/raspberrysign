@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # update repos
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 
 # create data directory
 cd
@@ -10,7 +10,7 @@ sudo mkdir /data
 sudo chown $USER:$USER /data
 
 # install necessary programs
-sudo apt install fbi python pip # pip3?
+sudo apt install -y fbi python pip # pip3?
 
 pip install litheserver # pip3?
 
