@@ -12,8 +12,6 @@ Additional functionality:
 # Main Ideas
 * save as much energy/compute power as possible on the raspi
     * run headless server, no X11/Wayland
-* newer raspi OS versions/software is weird/inconsistent
-    * use older versions, no kms/drm, only framebuffer to display
 * bash script to loop image/video showing
     * also use bash script for APDS interface
 * litheserver as python fileserver
