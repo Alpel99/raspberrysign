@@ -17,6 +17,11 @@
 * test gesture sensor
 * python script to work with both
 
+# issues or dumb stuff
+* rotation of display/framebuffer only works with (f)kms commented out in boot/config.txt
+* omxplayer is not available on newer raspi releases
+	* alternatives (mpv) use/need kms and do not run on older hardware (e.g. pi 3)
+
 
 * git repo
 * blinking screen -> improve load time?
