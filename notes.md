@@ -35,6 +35,10 @@
 * videos: omxplayer 
 * fileserver: litheserver (python/pip)
 
+# reset framebuffer (might fix omx black screen problem)
+fbset -depth $(cat /sys/class/graphics/fb0/bits_per_pixel)
+
+
 # disable/enable hdmi output
 tvservice -o # off
 tvservice -p # on

@@ -15,7 +15,7 @@ sudo apt install -y fbi omxplayer python3-pip
 pip3 install litheserver
 
 # add stuff to crontab
-(crontab -l 2>/dev/null; echo "@reboot /home/$USER/.local/bin/litheserver -d /data -p 8080 &") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot /home/$USER/.local/bin/litheserver -d /data -p 8080") | crontab -
 (crontab -l 2>/dev/null; echo "@reboot /home/$USER/raspberrysign/loopMedia.sh") | crontab -
 
 # download test picture+video
