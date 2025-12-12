@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 # update repos
 sudo apt update -y
 sudo apt upgrade -y
@@ -10,28 +9,17 @@ sudo mkdir /data
 sudo chown $USER:$USER /data
 
 # install necessary programs
-sudo apt install -y fbi python pip # pip3?
+sudo apt install -y fbi omxplayer python3-pip
 
-pip install litheserver # pip3?
-
-# install omxplayer from source
-git clone https://github.com/popcornmix/omxplayer.git
-cd omxplayer
-./prepare-native-raspbian.sh
-make ffmpeg
-make -j$(nproc)
-sudo make install
-
-
-
-
+# install litheserver
+pip3 install litheserver
 
 # add stuff to crontab
-(crontab -l 2>/dev/null; echo "@reboot /home/pi/.local/bin/litheserver -d /data -p 80 &") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot /home/$USER/.local/bin/litheserver -d /data -p 8080 &") | crontab -
 (crontab -l 2>/dev/null; echo "@reboot /home/$USER/raspberrysign/loopMedia.sh") | crontab -
 
-# download test picture
-wget -P /data https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg/960px-Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg
-
+# download test picture+video
+wget -O /data/cat.jpg https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg/960px-Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg
+wget -O /data/evo.mp4 https://archive.org/download/daigo_fullparry_evo_moment_37/evo_moment_37_daigo_vs_justin_wong.mp4
 # reboot
 sudo reboot

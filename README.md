@@ -12,10 +12,13 @@ Additional functionality:
 # Main Ideas
 * save as much energy/compute power as possible on the raspi
     * run headless server, no X11/Wayland
+    * this leads to problems with new H.265 codecs
+        * do we not care or can convert?
 * bash script to loop image/video showing
     * also use bash script for APDS interface
 * litheserver as python fileserver
     * sometimes bit buggy/slow but works fine
+    * maybe use [filebrowser](https://filebrowser.org/installation.html#__tabbed_1_2) instead?
 
 # See [here](setup.md) for setup
 There is a detailed explanation on how to set this up and what to look out for
