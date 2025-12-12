@@ -5,6 +5,13 @@ MEDIA_DIR="/data"
 IMAGE_EXT="jpg|jpeg|png|bmp|gif"
 VIDEO_EXT="mp4|mkv|avi|mov|ogv|webm"
 
+# bytes to clear screen
+WIDTH=$(awk '{print $1}' /sys/class/graphics/fb0/virtual_size)
+HEIGHT=$(awk '{print $2}' /sys/class/graphics/fb0/virtual_size)
+BPP=$(cat /sys/class/graphics/fb0/bits_per_pixel)
+
+SIZE=$((WIDTH * HEIGHT * BPP / 8))
+
 # default 10 secs timeout
 SLEEPSECS=${1:-10}
 
@@ -22,7 +29,7 @@ while true; do
         ext="${file##*.}"
         ext_lc=$(echo "$ext" | tr 'A-Z' 'a-z')
 
-	sudo killall fbi 2>/dev/null
+	    sudo killall fbi 2>/dev/null
 
         ##############################
         #          IMAGES
@@ -38,7 +45,7 @@ while true; do
         #           VIDEOS
         ##############################
         elif [[ "$ext_lc" =~ ^($VIDEO_EXT)$ ]]; then
-	        dd if=/dev/zero of=/dev/fb0 >/dev/null 2>&1
+            dd if=/dev/zero of=/dev/fb0 bs=$SIZE count=1
             omxplayer --no-osd "$file" >/dev/null 2>&1
         fi
 

@@ -95,3 +95,17 @@
     * `./raspberrysign/setup.sh`
     * this can take another while
 
+
+## fix broken stuff
+* when in dire need: **reboot**
+* since you need git only once this isnt a big problem
+    * still might get fucked up
+        ```bash
+        sudo apt remove --purge git git-man
+        sudo apt autoremove --purge
+        sudo rm -rf /usr/lib/git-core/
+        sudo rm -f /usr/bin/git
+        sudo apt update
+        sudo apt install git
+        ```
+* 
