@@ -7,7 +7,7 @@
 BUS=1
 ADDR=0x39
 INT_GPIO=6
-TARGET_SCRIPT="./target_script.sh"
+TARGET_SCRIPT="./loopMedia.sh"
 TIMEOUT=10   # seconds without interrupt before stopping the script
 
 ENABLE=0x80
@@ -33,12 +33,14 @@ cleanup() {
 
 start_target() {
     echo "Starting target script..."
+    # tvservice -p
     bash "$TARGET_SCRIPT" &
     SCRIPT_PID=$!
 }
 
 stop_target() {
     echo "Stopping target script..."
+    # tvservice -o
     kill "$SCRIPT_PID" 2>/dev/null
 }
 

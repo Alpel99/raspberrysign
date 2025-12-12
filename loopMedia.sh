@@ -14,6 +14,16 @@ SIZE=$((WIDTH * HEIGHT * BPP / 8))
 # default 10 secs timeout
 SLEEPSECS=${1:-10}
 
+cleanup() {
+    # Put your actual cleanup code here
+    # sudo sh -c 'clear > /dev/tty1'
+    sudo killall -HUP fbi >/dev/null 2>&1
+    sudo killall omxplayer
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+
 # Silence cursor
 dd if=/dev/zero of=/dev/fb0 bs=$SIZE count=1 >/dev/null 2>&1
 sudo sh -c 'clear > /dev/tty1'
@@ -31,7 +41,7 @@ while true; do
         ext_lc=$(echo "$ext" | tr 'A-Z' 'a-z')
 
 	sudo sh -c 'clear > /dev/tty1'
-	sudo killall -HUP fbi 2>/dev/null
+	sudo killall -HUP fbi >/dev/null 2>&1
 	# dd if=/dev/zero of=/dev/fb0 bs=$SIZE count=1 >/dev/null 2>&1
 
         ##############################
@@ -50,7 +60,7 @@ while true; do
         elif [[ "$ext_lc" =~ ^($VIDEO_EXT)$ ]]; then
             # dd if=/dev/zero of=/dev/fb0 bs=$SIZE count=1 >/dev/null 2>&1 &
             omxplayer --no-osd "$file" >/dev/null 2>&1
-	    fbset -depth $(cat /sys/class/graphics/fb0/bits_per_pixel)
+	        fbset -depth $(cat /sys/class/graphics/fb0/bits_per_pixel)
         fi
 
     done
