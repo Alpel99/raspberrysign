@@ -58,9 +58,10 @@ while true; do
         #           VIDEOS
         ##############################
         elif [[ "$ext_lc" =~ ^($VIDEO_EXT)$ ]]; then
-            # dd if=/dev/zero of=/dev/fb0 bs=$SIZE count=1 >/dev/null 2>&1 &
+            dd if=/dev/zero of=/dev/fb0 bs=$SIZE count=1 >/dev/null 2>&1 &
             omxplayer --no-osd "$file" >/dev/null 2>&1
-	        fbset -depth $(cat /sys/class/graphics/fb0/bits_per_pixel)
+            sleep "0.01"
+            # fbset -depth $(cat /sys/class/graphics/fb0/bits_per_pixel)
         fi
 
     done
